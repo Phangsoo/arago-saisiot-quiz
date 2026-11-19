@@ -10,7 +10,7 @@ const $=id=>document.getElementById(id);
 function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b;}
 const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let round=[],pointer=0,mode='전체 학습',answers={},previousBad=new Set();
-function start(modeName='전체 학습',chosen=null){mode=modeName;round=shuffle(chosen||BANK.map(q=>q.id)).map(id=>({id,choices:shuffle([1,2,3,4])}));pointer=0;answers={};render();}
+function start(modeName='전체 학습',chosen=null){mode=modeName;round=shuffle(chosen||BANK.map(q=>q.id)).map(id=>({id,choices:[1,2,3,4]}));pointer=0;answers={};render();}
 function current(){return BANK.find(q=>q.id===round[pointer].id)}
 function counts(){const values=Object.values(answers).filter(x=>x.graded);return [values.filter(x=>x.correct).length,values.filter(x=>!x.correct).length]}
 function render(){
